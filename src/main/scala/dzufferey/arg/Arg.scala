@@ -22,6 +22,8 @@ object Arg {
 
   private def toInt(str: java.lang.String): Option[scala.Int] = safeCall((x: java.lang.String) => x.toInt, str)
 
+  private def toDouble(str: java.lang.String): Option[scala.Double] = safeCall((x: java.lang.String) => x.toDouble, str)
+
   private def processOption(spec: Def, args: Seq[java.lang.String]): Seq[java.lang.String] = spec._2 match {
     case Unit(fct) =>
       fct()
@@ -50,6 +52,18 @@ object Arg {
           sys.error("no (not enough) argument given for option '"+ spec._1 +"'.")
           args
       }
+    case Real(fct) =>
+      args.headOption match {
+        case Some(arg) =>
+          toDouble(arg) match {
+            case Some(b) => fct(b)
+            case None => sys.error("expected floating point number argument for option '"+spec._1+"' found: '" + arg + "'.")
+          }
+          args.tail
+        case None =>
+          sys.error("no (not enough) argument given for option '"+ spec._1 +"'.")
+          args
+      }
     case String(fct) =>
       args.headOption match {
         case Some(arg) =>
@@ -71,6 +85,7 @@ object Arg {
     case Bool(_)    => "Bool"
     case String(_)  => "String"
     case Int(_)     => "Integer"
+    case Real(_)     => "Real"
     case Tuple(lst) => lst.map(specType(_)).mkString("", " ", "")
   }
 
