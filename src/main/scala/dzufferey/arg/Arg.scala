@@ -78,6 +78,20 @@ object Arg {
       processOption((spec._1, Tuple(xs), spec._3), rest)
     case Tuple(Nil) =>
       args
+    case Enum(enum, fct) =>
+      args.headOption match {
+        case Some(arg) =>
+          try {
+            fct(enum.withName(arg))
+          } catch {
+            case _: NoSuchElementException =>
+              sys.error("option '" + spec._1 + "': "+ arg + " is not in "+enum.values.mkString(", "))
+          }
+          args.tail
+        case None =>
+          sys.error("no (not enough) argument given for option '"+ spec._1 +"'.")
+          args
+      }
   }
 
   private def specType(s: Spec): java.lang.String = s match {
@@ -87,6 +101,7 @@ object Arg {
     case Int(_)     => "Integer"
     case Real(_)     => "Real"
     case Tuple(lst) => lst.map(specType(_)).mkString("", " ", "")
+    case Enum(enum, _) => enum.toString
   }
 
   private def printUsage(specs: Seq[Def], usage: java.lang.String) {
