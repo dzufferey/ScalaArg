@@ -1,6 +1,8 @@
 # ScalaArg
 
-A scala library to process command line arguments, inspired by the Ocaml Arg module
+A scala library to process command line arguments, inspired by the Ocaml Arg module.
+
+The library can also generate scripts for bash completion.
 
 ## Compiling
 
@@ -25,6 +27,3 @@ libraryDependencies += "io.github.dzufferey" %% "scala-arg" % "0.1-SNAPSHOT"
 The last line is requried if you want to use it in some other project.
 If you want to use it locally do not add the `resolvers` line but instead run `sbt publishLocal`.
 
-## ToDo
-
-* automatically generate bash completion scripts

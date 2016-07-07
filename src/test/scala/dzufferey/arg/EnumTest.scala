@@ -2,10 +2,6 @@ package dzufferey.arg
 
 import org.scalatest._
 
-object MyBool extends Enumeration {
-  val top, bot = Value
-}
-
 class EnumTest extends FunSuite {
 
   import MyBool._
