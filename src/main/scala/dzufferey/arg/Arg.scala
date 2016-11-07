@@ -114,7 +114,7 @@ object Arg {
   }
 
   def process(specs: Seq[Def], default: java.lang.String => scala.Unit, usage: java.lang.String)(args: Seq[java.lang.String]) {
-    args.headOption match {
+    args.headOption match { // linter:ignore UseOptionForeachNotPatMatch
       case Some(arg) =>
         if (arg == "-h" || arg == "--help") {
           printUsage(specs, usage)
@@ -130,7 +130,8 @@ object Arg {
           process(specs, default, usage)(args2)
         } else {
           default(arg)
-          process(specs, default, usage)(args.tail)
+          val args2 = args.tail
+          process(specs, default, usage)(args2)
         }
       case None => ()
     }
