@@ -4,9 +4,9 @@ organization := "io.github.dzufferey"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.1"
 
-crossScalaVersions := Seq("2.11.8", "2.12.0")
+crossScalaVersions := Seq("2.11.8", "2.12.1")
 
 libraryDependencies ++=  Seq(
     "org.scalatest" %% "scalatest" % "3.0.0" % "test"
