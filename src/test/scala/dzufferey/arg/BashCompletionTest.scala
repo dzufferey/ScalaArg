@@ -6,7 +6,7 @@ class BashCompletionTest extends FunSuite {
 
   import MyBool._
   
-  test("") {
+  test("1") {
     val d = List(
       ("-u", Unit(() => ()), ""),
       ("-b", Bool(_ => ()), ""),
