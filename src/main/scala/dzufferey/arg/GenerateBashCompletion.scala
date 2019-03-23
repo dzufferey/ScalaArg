@@ -37,7 +37,7 @@ object GenerateBashCompletion {
             return
             ;;""")
             printer.newLine()
-          case Int(_) | Real(_) =>
+          case Int(_) | Long(_) | Real(_) =>
             //TODO improve: negative number, decimal point, ...
             printer.write("""            COMPREPLY+=( $( compgen -P "$cur" -W "{0..9}" ) )
             compopt -o nospace
