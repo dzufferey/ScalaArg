@@ -9,7 +9,7 @@ scalaVersion := "2.12.8"
 crossScalaVersions := Seq("2.11.11", "2.12.8")
 
 libraryDependencies ++=  Seq(
-    "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+    "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 )
 
 addCompilerPlugin("org.psywerx.hairyfotr" %% "linter" % "0.1.17")
