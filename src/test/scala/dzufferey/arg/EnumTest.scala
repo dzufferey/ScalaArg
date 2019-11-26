@@ -7,10 +7,10 @@ class EnumTest extends FunSuite {
   import MyBool._
   
   test("parsing enum") {
-    def isTrue(b: MyBool.Value) {
+    def isTrue(b: MyBool.Value): scala.Unit = {
       assert(b == top)
     }
-    def isFalse(b: MyBool.Value) {
+    def isFalse(b: MyBool.Value): scala.Unit = {
       assert(b == bot)
     }
     val d = List(

@@ -6,7 +6,7 @@ object GenerateBashCompletion {
 
   import Arg.Def
 
-  def header(cmd: java.lang.String, printer: BufferedWriter) {
+  def header(cmd: java.lang.String, printer: BufferedWriter): scala.Unit = {
     printer.write("_")
     printer.write(cmd)
     printer.write("""() 
@@ -22,7 +22,7 @@ object GenerateBashCompletion {
     case _ => false
   }
 
-  def completeOptionArg(specs: Seq[Def], printer: BufferedWriter) {
+  def completeOptionArg(specs: Seq[Def], printer: BufferedWriter): scala.Unit = {
     val s2 = specs.filter(canCompleteArg)
     if (s2.nonEmpty) {
       printer.newLine()
@@ -59,7 +59,7 @@ object GenerateBashCompletion {
     }
   }
   
-  def completeOption(specs: Seq[Def], printer: BufferedWriter) {
+  def completeOption(specs: Seq[Def], printer: BufferedWriter): scala.Unit = {
     if (specs.nonEmpty) {
       val (minus, tmp1) = specs.partition{ case (n, _, _) => n startsWith "-" }
       val (plus, rest) = tmp1.partition{ case (n, _, _) => n startsWith "+" }
@@ -102,14 +102,14 @@ object GenerateBashCompletion {
     }
   }
 
-  def footer(cmd: java.lang.String, printer: BufferedWriter) {
+  def footer(cmd: java.lang.String, printer: BufferedWriter): scala.Unit = {
     printer.write("}")
     printer.newLine()
     printer.write("complete -F _" + cmd + " " + cmd + " || echo error")
     printer.newLine()
   }
   
-  def apply(cmd: java.lang.String, specs: Seq[Def], writer: BufferedWriter) {
+  def apply(cmd: java.lang.String, specs: Seq[Def], writer: BufferedWriter): scala.Unit = {
     header(cmd, writer)
     completeOptionArg(specs, writer)
     completeOption(specs, writer)

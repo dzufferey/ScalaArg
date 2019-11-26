@@ -104,7 +104,7 @@ object Arg {
     case Enum(enum, _) => enum.toString
   }
 
-  private def printUsage(specs: Seq[Def], usage: java.lang.String) {
+  private def printUsage(specs: Seq[Def], usage: java.lang.String): scala.Unit = {
     Console.println("cmd [Option(s)] file(s)")
     Console.println(usage)
     Console.println("Options:")
@@ -113,7 +113,7 @@ object Arg {
     }
   }
 
-  def process(specs: Seq[Def], default: java.lang.String => scala.Unit, usage: java.lang.String)(args: Seq[java.lang.String]) {
+  def process(specs: Seq[Def], default: java.lang.String => scala.Unit, usage: java.lang.String)(args: Seq[java.lang.String]): scala.Unit = {
     args.headOption match { // linter:ignore UseOptionForeachNotPatMatch
       case Some(arg) =>
         if (arg == "-h" || arg == "--help") {
