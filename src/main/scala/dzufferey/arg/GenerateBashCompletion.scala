@@ -9,7 +9,7 @@ object GenerateBashCompletion {
   def header(cmd: java.lang.String, printer: BufferedWriter): scala.Unit = {
     printer.write("_")
     printer.write(cmd)
-    printer.write("""() 
+    printer.write("""()
 {
     local cur prev words cword split
     _init_completion -s || return

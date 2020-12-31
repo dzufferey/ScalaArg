@@ -1,8 +1,9 @@
 package dzufferey.arg
 
 import org.scalatest._
+import org.scalatest.funsuite.AnyFunSuite
 
-class EnumTest extends FunSuite {
+class EnumTest extends AnyFunSuite {
 
   import MyBool._
   

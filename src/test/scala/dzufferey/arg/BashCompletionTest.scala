@@ -1,11 +1,11 @@
 package dzufferey.arg
 
-import org.scalatest._
+import org.scalatest.funsuite.AnyFunSuite
 
-class BashCompletionTest extends FunSuite {
+class BashCompletionTest extends AnyFunSuite {
 
   import MyBool._
-  
+
   test("1") {
     val d = List(
       ("-u", Unit(() => ()), ""),
@@ -14,7 +14,7 @@ class BashCompletionTest extends FunSuite {
       ("-t", Enum(MyBool, (_: MyBool.Value) => ()), "")
     )
     val result = GenerateBashCompletion("testing", d)
-    val expected = """_testing() 
+    val expected = """_testing()
 {
     local cur prev words cword split
     _init_completion -s || return
